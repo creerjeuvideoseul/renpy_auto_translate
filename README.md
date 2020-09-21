@@ -1,8 +1,20 @@
 # renpy_auto_translate
 Renpy auto translate - no commercial use
 
+CREATE BY Thanos255
+NO COMMERCIAL USE.
+You can use this script, modify etc if you show the creator.
+You can't use it for win money.
+
+Try my game : https://www.lucie-adult-game.com/
+Patreon : https://www.patreon.com/lucie_adult_game
+
+If you use it or like it, please support me on Patreon
+
 How to use ?
 https://www.youtube.com/watch?v=R6QBtp73fcE
+https://www.lucie-adult-game.com/renpy_semi_auto_translate_api.php
+
 
 ----------------------------------
 STEP 1
