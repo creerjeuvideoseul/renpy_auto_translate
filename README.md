@@ -1,4 +1,4 @@
-# renpy_auto_translate
+# renpy_auto_translate - BETA VERSION
 Renpy auto translate - no commercial use
 
 CREATE BY Thanos255
