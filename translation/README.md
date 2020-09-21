@@ -1,0 +1,1 @@
+Put your source rpy file here. (Translate rpy file, not your script renpy)
