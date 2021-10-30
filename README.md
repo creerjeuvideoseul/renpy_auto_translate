@@ -15,6 +15,13 @@ How to use ?
 https://www.youtube.com/watch?v=R6QBtp73fcE
 https://www.lucie-adult-game.com/renpy_semi_auto_translate_api.php
 
+----------------------------------
+STEP 0 :
+----------------------------------
+On your Apache/ngninx : 
+- Disable Notice
+- Enable shorttag <?
+- UTF8 everywhere
 
 ----------------------------------
 STEP 1
@@ -23,7 +30,7 @@ STEP 1
 C:\Users\xxxxxx\Documents\yourgame\game\tl\english\*.rpy
 In 
 C:\UwAmp\www\yourrenpyautotranslation\translation\*.rpy
-- Create database with renpy_translate.sql
+- Create database with renpy_translate.sql (UTF8 everywhere)
 - Add you deepl api Key in renpy_translation_include.php and your database connexion.
 
 ----------------------------------
