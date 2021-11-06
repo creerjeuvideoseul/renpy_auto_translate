@@ -1,8 +1,9 @@
 <?
 /************************************************************
 CREATE BY Thanos255
+
 NO COMMERCIAL USE.
-You can use this script, modify etc if you show the creator.
+You can use this script, modify etc if you "show the creator".
 You can't use it for win money.
 
 Try my game : https://www.lucie-adult-game.com/
@@ -19,16 +20,19 @@ if (mysqli_connect_errno()) {
     exit();
 }
  
+######################### PARAMETERS ##################################
 $authkey = "xxxxYOUR KEYSxxxx";
 
+// For you = Tu / vous 
+// IF YOU USE FREE VERSION OF DEEPL REMOVE THIS FORMALITY PARAMETERS
+$options = "&formality=1";
 
-
-// Paramétrage application :
+// Path local, and folder where we put the translate file :
 $dirServer = "C:\UwAmp\www\\";
 $dirParse = "translation\\";
 
 
-# From EN to French
+# Exemple : From EN to French
 
 // Check langage in script / Security
 $langueCheck = "french";
@@ -38,15 +42,25 @@ $DeepLSRC = "EN";
 $DeepLTarget = "FR";
 $prenomAModifier = array();
 // IdUser in table `translation_ask` who ask
-$idUSER = 4;
-// For you = Tu / vous 
-$options = "&formality=1";
+$idUSER = 1;
+
 // Balise need to check at the end, because deepl remove this.
 $baliseCheck = array(
 	"{t}"=>"{/t}", 
-); 
+	# ADD YOUR BALISE HERE IF YOU HAVE
+);
 
- 
+
+## IF YOU HAVE THIS ERROR MESSAGE,
+## error setting certificate verify locations:
+## CAfile: C:\wamp64\www/cacert.pem
+## CApath: none"
+## install : http://drive.google.com/file/d/1Mp37eBSF9l-HbByB4eN776iKyyq2Fu3b/view?usp=sharing (it's my certificate)
+
+##################### END PARAMETERS ##################################
+
+
+# NOT USE IN DEFAULT : 
 // Paramétratge CSV : not use.
 $SymbolOfSeparate = ";";
 
