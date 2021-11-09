@@ -1,4 +1,4 @@
-<?
+<?php 
 /************************************************************
 CREATE BY Thanos255
 NO COMMERCIAL USE.
@@ -38,7 +38,7 @@ echo "<span style='font-size:30px;'><strong>ETAPE 1 :</strong> We reed the file 
 echo "Check langage : <strong>".$langueCheck."</strong><br>";
 echo "langage Deepl Source : <strong>".$DeepLSRC."</strong><br>";
 echo "langage Deepl Target : <strong>".$DeepLTarget."</strong><br></span>";
-echo "<a href='renpy_translation_api.php'>Step 2 : Translate BY DEEPL (Paid)</a>";
+echo "<a href='2-renpy_translation_api.php'>Step 2 : Translate BY DEEPL (Paid)</a>";
 echo "<br><br><br><br>";
  
 // Si $chemin est un dossier => on appelle la fonction explorer() pour chaque élément (fichier ou dossier) du dossier$chemin

@@ -1,4 +1,4 @@
-<?
+<?php 
 /************************************************************
 CREATE BY Thanos255
 NO COMMERCIAL USE.
@@ -30,7 +30,7 @@ $folderTarget = "fill\\";
 $suffixe_file = ".rpy";
 $originLangage = "";
 
-echo "STEP 3 : Rewrite rpy file in repository /fill<br>";
+echo "STEP 3 : Rewrite rpy file completed in repository /fill/<br>";
 
 // Si $chemin est un dossier => on appelle la fonction explorer() pour chaque élément (fichier ou dossier) du dossier$chemin
 if( is_dir($dirParse) ){

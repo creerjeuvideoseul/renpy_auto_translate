@@ -1,4 +1,4 @@
-<?
+<?php 
 /************************************************************
 CREATE BY Thanos255
 NO COMMERCIAL USE.
@@ -24,8 +24,8 @@ $texteSource = "";
 
 $ztime = microtime(true);
 
-echo "STEP2 : API Deepl, we take all line state != 2, and we send it to deepl.<br><br>";
-echo "<a href='renpy_translation_create_rpy.php'>When finish, step3 : Write a newfile rpy</a><br>";
+echo "STEP2 : CALL API Deepl, (we take all line state != 2, 2 = already done), and we send it to deepl.<br><br>";
+echo "<a href='3-renpy_translation_create_rpy.php'>WAIT! this page finished : and after, lauch step3 : Write a newfile rpy</a><br>";
 
 // Si $chemin est un dossier => on appelle la fonction explorer() pour chaque élément (fichier ou dossier) du dossier$chemin
 if( is_dir($dirParse) ){

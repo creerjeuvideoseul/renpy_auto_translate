@@ -1,4 +1,4 @@
-<?
+<?php 
 /************************************************************
 CREATE BY Thanos255
 
@@ -14,18 +14,28 @@ If you use it or like it, please support me on Patreon
 ***********************************************************/
 
 // Database connexion :
-$mysqli = new mysqli("localhost", "xxxx", "xxxx", "renpy_translate");
+$mysqli = new mysqli("localhost", "XXXLOGINXXX", "XXXMDPXXXX", "renpy_translate");
 if (mysqli_connect_errno()) {
     printf("Échec de la connexion : %s\n", mysqli_connect_error());
     exit();
 }
- 
-######################### PARAMETERS ##################################
-$authkey = "xxxxYOUR KEYSxxxx";
 
-// For you = Tu / vous 
-// IF YOU USE FREE VERSION OF DEEPL REMOVE THIS FORMALITY PARAMETERS
-$options = "&formality=1";
+######################### PARAMETERS ##################################
+$authkey = "*****************YOUR KEY HERE***************";
+$IUseDeepLPro = 0; # 1 if you use DEEPL PRO
+
+if ($IUseDeepLPro == 0)
+{
+	### IF YOU USE DEEPL FREE ###########
+	$urlAPIDeepL = "https://api-free.deepl.com/v2/translate"; # DOCS https://www.deepl.com/docs-api
+	$options = "";
+}
+else
+{
+	### IF YOU USE DEEPL PRO ###########
+	$urlAPIDeepL = "https://api.deepl.com/v2/translate"; # DOCS https://www.deepl.com/docs-api
+	$options = "&formality=1"; # options pro only // For you = Tu / vous 
+}
 
 // Path local, and folder where we put the translate file :
 $dirServer = "C:\UwAmp\www\\";
@@ -33,7 +43,6 @@ $dirParse = "translation\\";
 
 
 # Exemple : From EN to French
-
 // Check langage in script / Security
 $langueCheck = "french";
 // Langage source
@@ -53,7 +62,7 @@ $baliseCheck = array(
 
 ## IF YOU HAVE THIS ERROR MESSAGE,
 ## error setting certificate verify locations:
-## CAfile: C:\wamp64\www/cacert.pem
+## CAfile: C:\wamp64\www\cacert.pem
 ## CApath: none"
 ## install : http://drive.google.com/file/d/1Mp37eBSF9l-HbByB4eN776iKyyq2Fu3b/view?usp=sharing (it's my certificate)
 
@@ -77,7 +86,7 @@ function display_error($txt) {
 */
 function traductionByDeepL($textToTranslate, $langueSRC, $langueTarget, $idTTLine, $authkey) {
 
-	global $mysqli, $idUSER, $options;
+	global $mysqli, $idUSER, $options, $urlAPIDeepL;
 
 	if ($textToTranslate == "")
 		return false;
@@ -107,7 +116,7 @@ function traductionByDeepL($textToTranslate, $langueSRC, $langueTarget, $idTTLin
 
 	// $textToTranslate = "Il fait beau dehors !";
 
-	curl_setopt($curl, CURLOPT_URL, "https://api.deepl.com/v2/translate");
+	curl_setopt($curl, CURLOPT_URL, $urlAPIDeepL);
 	curl_setopt($curl, CURLOPT_CAINFO, dirname(__FILE__)."/cacert.pem");
 	curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 	curl_setopt($curl, CURLOPT_POST, 1);
@@ -119,9 +128,8 @@ curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 */
 	//curl_setopt($curl, CURLOPT_TIMEOUT, 10);
     
-	// https://api.deepl.com/v1/translate?text=Hello%20World!&target_lang=EN&auth_key=XXX
-	
-	$urlCall = "https://api.deepl.com/v2/translate?source_lang=".$langueSRC."&target_lang=".$langueTarget."&auth_key=".$authkey."&text=".$textToTranslate;
+
+	$urlCall = $urlAPIDeepL."?source_lang=".$langueSRC."&target_lang=".$langueTarget."&auth_key=".$authkey."&text=".$textToTranslate;
 	
 	$responseArray = false;
 	$errorTab = false;
@@ -151,18 +159,31 @@ curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 		VALUES ('".$idTTLine."', '".$urlCall."', '".$response."', '".$errorTab."', now(), '".$idUSER."');";
 	$result = $mysqli->query($sql);
 	// echo $sql;
- 
-	if ($response) $responseDeepl = $mysqli->real_escape_string($responseArray->translations['0']->text);
 	
-	echo "R @".$responseDeepl."@<br>";
+	if ($response && $responseArray->translations['0']->text != "") 
+	{
+		$responseDeepl = $mysqli->real_escape_string($responseArray->translations['0']->text);
+	
+		echo "OK Réponse obtenue : @".$responseDeepl."@<br>";
 
 	// Add to cache deepl.
-	$sql = "INSERT INTO `translate_cache` (`tc_source`, `tc_translate`, `tc_langage_src`, `tc_langage_target`) 
-		VALUES ('".$checkTranslate."', '".$responseDeepl."', '".$langueSRC."', '".$langueTarget."');";
-	$result = $mysqli->query($sql);
-  
-	curl_close($curl);
-	return $responseArray->translations['0']->text;
+		if ($responseDeepl)
+		{
+			$sql = "INSERT INTO `translate_cache` (`tc_source`, `tc_translate`, `tc_langage_src`, `tc_langage_target`) 
+				VALUES ('".$checkTranslate."', '".$responseDeepl."', '".$langueSRC."', '".$langueTarget."');";
+			$result = $mysqli->query($sql);
+		}
+		curl_close($curl);
+		return $responseArray->translations['0']->text;
+	}
+	else
+	{
+		echo message_error("Erreur retour DEEPL ");
+		print_r($responseArray);
+
+		curl_close($curl);
+		return false;
+	}
 }
 
 function ConvertisseurTime($Time){
