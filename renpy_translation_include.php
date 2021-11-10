@@ -33,7 +33,7 @@ if ($IUseDeepLPro == 0)
 else
 {
 	### IF YOU USE DEEPL PRO ###########
-	$urlAPIDeepL = "https://api.deepl.com/v2/translate"; # DOCS https://www.deepl.com/docs-api
+	$urlAPIDeepL = "https://api.deepl.com/v1/translate"; # DOCS https://www.deepl.com/docs-api ===> Try /V2/ IF not working
 	$options = "&formality=1"; # options pro only // For you = Tu / vous 
 }
 
@@ -178,7 +178,7 @@ curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 	}
 	else
 	{
-		echo message_error("Erreur retour DEEPL ");
+		echo display_error("Erreur retour DEEPL ");
 		print_r($responseArray);
 
 		curl_close($curl);
