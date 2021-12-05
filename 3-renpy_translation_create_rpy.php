@@ -83,8 +83,8 @@ if( is_dir($dirParse) ){
 					// ****************************************************
 					if ($texteSource && preg_match("@^old \"@", trim($texteSource)))
 						$texteSourceClean = preg_replace("@^old \"@", "", trim($texteSource)); // On retire le cas du old
-					elseif ($texteSource && preg_match("@^# ([a-zA-Z0-9\_]{1,}) \"@", trim($texteSource)))
-						$texteSourceClean = preg_replace("@^# ([a-zA-Z0-9\_]{1,}) \"@", "", trim($texteSource)); // On retire le cas du t
+					elseif ($texteSource && preg_match("@^# ([a-zA-Z0-9\_\.]{1,}) \"@", trim($texteSource)))
+						$texteSourceClean = preg_replace("@^# ([a-zA-Z0-9\_\.]{1,}) \"@", "", trim($texteSource)); // On retire le cas du t
  					else
 						$texteSourceClean = preg_replace("@^# \"@", "", trim($texteSource)); // On retire le cas de rien.
 					if (substr($texteSourceClean, -1) == '"')
@@ -99,8 +99,8 @@ if( is_dir($dirParse) ){
 					// ****************************************************
 					if ($texteTraduit && preg_match("@^new \"@", trim($texteTraduit)))
 						$texteTraduitClean = preg_replace("@^new \"@", "", trim($texteTraduit)); // On retire le cas du old
-					elseif ($texteTraduit && preg_match("@^([a-zA-Z0-9\_]{1,}) \"@", trim($texteTraduit)))
-						$texteTraduitClean = preg_replace("@^([a-zA-Z0-9\_]{1,}) \"@", "", trim($texteTraduit)); // On retire le cas du t
+					elseif ($texteTraduit && preg_match("@^([a-zA-Z0-9\_\.]{1,}) \"@", trim($texteTraduit)))
+						$texteTraduitClean = preg_replace("@^([a-zA-Z0-9\_\.]{1,}) \"@", "", trim($texteTraduit)); // On retire le cas du t
  					else
 						$texteTraduitClean = preg_replace("@^\"@", "", trim($texteTraduit)); // On retire le cas de rien.
 

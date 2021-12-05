@@ -19,8 +19,9 @@ echo "<br><br><br><br>";
  
 $mysqli->query("TRUNCATE TABLE translation_request");
 echo "TABLE translation_request VIDER <br>";
-$mysqli->query("TRUNCATE TABLE translate_cache");
-echo "TABLE translate_cache VIDER <br>";
+# $mysqli->query("TRUNCATE TABLE translate_cache");
+# echo "TABLE translate_cache VIDER <br>";
+
 $mysqli->query("TRUNCATE TABLE translation_text");
 echo "TABLE translation_text VIDER <br>";
 

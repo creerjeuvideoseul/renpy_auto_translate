@@ -35,7 +35,7 @@ if( is_dir($dirParse) ){
 
 		if (substr($fileTranslate, -3) == "rpy")
 		{
-			echo "<b>in progress : ".htmlentities($dirParse.$fileTranslate)."</b><br>";
+			echo "<h2>in progress : ".htmlentities($dirParse.$fileTranslate)."</h2><br>";
 			$fileTranslateMysql = $mysqli->real_escape_string($fileTranslate);
 
 				
@@ -59,8 +59,8 @@ if( is_dir($dirParse) ){
 					// On nettoie à la chaine à traduire.
 					if ($texteSource && preg_match("@^old \"@", trim($texteSource)))
 						$texteSourceClean = preg_replace("@^old \"@", "", trim($texteSource));
-					elseif ($texteSource && preg_match("@^# ([a-zA-Z0-9\_]{1,}) \"@", trim($texteSource)))
-						$texteSourceClean = preg_replace("@^# ([a-zA-Z0-9\_]{1,}) \"@", "", trim($texteSource));
+					elseif ($texteSource && preg_match("@^# ([a-zA-Z0-9\_\.]{1,}) \"@", trim($texteSource)))
+						$texteSourceClean = preg_replace("@^# ([a-zA-Z0-9\_\.]{1,}) \"@", "", trim($texteSource));
  					else
 						$texteSourceClean = preg_replace("@^# \"@", "", trim($texteSource));
 

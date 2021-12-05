@@ -132,7 +132,7 @@ translate english day5_living_room_test_lucie_2d0d402c:
 						$cptLineGroupe ++;
 					}
 
-					if ($cas == 1 && $cptLineGroupe == 3 && (preg_match("@^    ([a-zA-Z0-9\_]*) @", $buffer) OR preg_match("@^    \"\"@", $buffer))) // on cherche la 3 eme ligne. le old ou le # t SAUF NEW !
+					if ($cas == 1 && $cptLineGroupe == 3 && (preg_match("@^    ([a-zA-Z0-9\_\.]*) @", $buffer) OR preg_match("@^    \"\"@", $buffer))) // on cherche la 3 eme ligne. le old ou le # t SAUF NEW !
 					{
 						if (isset($_GET['debug'])) echo "CAS 1 : LINE 4 : Traduction : ".htmlentities($buffer)."<br>";
 						$cptLineGroupe = 0;
@@ -179,7 +179,7 @@ translate english strings:
 						unset($tmp);
 					}
 
-					if ($cas == 2 && $cptLineGroupe == 1 && preg_match("@^    # ([a-zA-Z0-9\_]{1,})/@", $buffer)) // Si c'est la ligne de début du groupe d'une traduction :
+					if ($cas == 2 && $cptLineGroupe == 1 && preg_match("@^    # ([a-zA-Z0-9\_\.]{1,})/@", $buffer)) // Si c'est la ligne de début du groupe d'une traduction :
 					{
 						if (isset($_GET['debug'])) echo "CAS 2 : LINE 2 : ".htmlentities($buffer)."<br>";
 						$labelUnique = $buffer;// # game/screens.rpy:321 --------- Stock la signature
@@ -227,7 +227,7 @@ ou
 						$test1 = trim($targetText);
 						$test2 = trim($SourceText);
 
-						if ($test1 == 'new ""' OR preg_match('@^([a-zA-Z0-9\_]{1,}) ""@', $test1) OR preg_match('@^""$@', $test1)) // Vide à traduire.
+						if ($test1 == 'new ""' OR preg_match('@^([a-zA-Z0-9\_\.]{1,}) ""@', $test1) OR preg_match('@^""$@', $test1)) // Vide à traduire.
 							$etat = 0;
 						elseif ("# ".$test1 == $test2) // Si remplit DANS la meme langue. 
 							$etat = 1;

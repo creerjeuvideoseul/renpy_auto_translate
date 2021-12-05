@@ -33,8 +33,8 @@ if ($IUseDeepLPro == 0)
 else
 {
 	### IF YOU USE DEEPL PRO ###########
-	$urlAPIDeepL = "https://api.deepl.com/v1/translate"; # DOCS https://www.deepl.com/docs-api ===> Try /V2/ IF not working
-	$options = "&formality=1"; # options pro only // For you = Tu / vous 
+	$urlAPIDeepL = "https://api.deepl.com/v2/translate"; # DOCS https://www.deepl.com/docs-api
+	$options = ""; # options pro only // For you = Tu / vous  &formality=1
 }
 
 // Path local, and folder where we put the translate file :
@@ -55,14 +55,14 @@ $idUSER = 1;
 
 // Balise need to check at the end, because deepl remove this.
 $baliseCheck = array(
-	"{t}"=>"{/t}", 
+	"{b}"=>"{/b}", 
 	# ADD YOUR BALISE HERE IF YOU HAVE
 );
 
 
 ## IF YOU HAVE THIS ERROR MESSAGE,
 ## error setting certificate verify locations:
-## CAfile: C:\wamp64\www\cacert.pem
+## CAfile: C:\wamp64\www/cacert.pem
 ## CApath: none"
 ## install : http://drive.google.com/file/d/1Mp37eBSF9l-HbByB4eN776iKyyq2Fu3b/view?usp=sharing (it's my certificate)
 
@@ -86,7 +86,7 @@ function display_error($txt) {
 */
 function traductionByDeepL($textToTranslate, $langueSRC, $langueTarget, $idTTLine, $authkey) {
 
-	global $mysqli, $idUSER, $options, $urlAPIDeepL;
+	global $mysqli, $idUSER, $options, $urlAPIDeepL, $_GET;
 
 	if ($textToTranslate == "")
 		return false;
@@ -104,7 +104,7 @@ function traductionByDeepL($textToTranslate, $langueSRC, $langueTarget, $idTTLin
 
 	// Si y'a uné reponse, on quite direct :
 	while ($row2 = $result2->fetch_assoc()) {
-		print "<b>CACHE USE OK</b><br>";
+		print "<b>USE CACHE</b> : ".$row2['tc_translate']."<br>";
 		return $row2['tc_translate'];
 	}
  
@@ -146,7 +146,7 @@ curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
     }
     else
 	{ 
-		print $urlCall."<br>"; 
+		if (isset($_GET['debug'])) print $urlCall."<br>"; 
 		$responseArray = json_decode($response);
 	}
 	
