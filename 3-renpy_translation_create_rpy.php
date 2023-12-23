@@ -35,7 +35,7 @@ echo "STEP 3 : Rewrite rpy file completed in repository /fill/<br>";
 // Si $chemin est un dossier => on appelle la fonction explorer() pour chaque élément (fichier ou dossier) du dossier$chemin
 if( is_dir($dirParse) ){
 	
-	if (!is_dir($dirServer.$folderTarget))
+	if (!is_dir($dirServer.$folderTarget) && !is_dir($folderTarget))
 		mkdir($folderTarget);
 
 	$me = opendir($dirParse); 
@@ -188,7 +188,7 @@ if( is_dir($dirParse) ){
   		}
 	}
 }
-echo $cptLine." lines wrotes";
+echo "<h1>".$cptLine." lines wrotes</h1>";
 
 echo "<br><br>Array use : <pre>";
 var_dump($prenomAModifier);

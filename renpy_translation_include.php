@@ -26,11 +26,11 @@ $IUseDeepLPro = 0; # 1 if you use DEEPL PRO
 
 if ($IUseDeepLPro == 0)
 {
-	### IF YOU USE DEEPL FREE ###########
+	### IF YOU USE DEEPL FREE ########### 
 	$urlAPIDeepL = "https://api-free.deepl.com/v2/translate"; # DOCS https://www.deepl.com/docs-api
 	$options = "";
 }
-else
+else // NE MARCHE PAS.
 {
 	### IF YOU USE DEEPL PRO ###########
 	$urlAPIDeepL = "https://api.deepl.com/v2/translate"; # DOCS https://www.deepl.com/docs-api

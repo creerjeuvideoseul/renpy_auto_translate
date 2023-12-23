@@ -43,7 +43,7 @@ if( is_dir($dirParse) ){
 			$sql = "SELECT * FROM translation_text 
 				WHERE tt_file = '".$fileTranslateMysql."' AND ta_id = '".$idUSER."' ORDER BY tt_line ASC ";
 			$result = $mysqli->query($sql);
-			echo $sql;
+			echo $sql."<br>";
 
 			while ($row = $result->fetch_assoc()) {
 				
@@ -52,7 +52,7 @@ if( is_dir($dirParse) ){
 				
 				if ($row['tt_etat'] != 2 && $row['tt_translate'] && $texteSource)
 				{
-					echo "@".$texteSource."@ translate in @".$row['tt_translate']."@<br>";
+					echo "=> <strong>Source </strong>: @".$texteSource."@ translate in @".$row['tt_translate']."@<br>";
 
 					$tt_translate = $row['tt_translate'];
 					
@@ -67,7 +67,7 @@ if( is_dir($dirParse) ){
 					if (substr($texteSourceClean, -1) == '"')
 						$texteSourceClean = substr(trim($texteSourceClean), 0, -1);
 
-					echo "=>CLEAN : @".$texteSourceClean."@<br>";
+					echo "=><strong>CLEAN</strong> : @".$texteSourceClean."@<br>";
 
 					// On traduit
 					$response = traductionByDeepL(trim($texteSourceClean), $DeepLSRC, $DeepLTarget, $row['id_tt'], $authkey);
