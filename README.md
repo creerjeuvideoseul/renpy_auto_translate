@@ -9,9 +9,7 @@ You can't use it for win money.
 Try my game : https://www.lucie-adult-game.com/
 Patreon : https://www.patreon.com/lucie_adult_game
 
-It's still a machine translation. Don't use my script for a professional production.
-No machine translation can match the quality of a real human translator, proofreader and corrector.
-Idiomatic and cultural expressions won't translate with an automatic translator, and neither will the gender of the speakers, because of the fundamental differences between he and she in French and US.
+This is still a machine translation. Do not use my script for professional productions. No machine translation can match the quality of a skilled human translator, proofreader, or editor. Idiomatic expressions and cultural nuances often fail to translate accurately with automated tools. Additionally, fundamental differences between languages, such as gender distinctions in French versus English, cannot be effectively managed by machine translation.
 
 If you use it or like it, please support me on Patreon
 
